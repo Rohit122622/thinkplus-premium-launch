@@ -15,10 +15,10 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { label: "Courses", href: "#courses" },
-    { label: "Features", href: "#features" },
-    { label: "Testimonials", href: "#testimonials" },
-    { label: "About", href: "#about" },
+    { label: "Home", href: "/" },
+    { label: "Browse Courses", href: "/courses" },
+    { label: "Features", href: "/#features" },
+    { label: "Testimonials", href: "/#testimonials" },
   ];
 
   return (
