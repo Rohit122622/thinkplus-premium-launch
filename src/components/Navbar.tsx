@@ -19,6 +19,7 @@ const Navbar = () => {
     { label: "Browse Courses", href: "/courses" },
     { label: "Features", href: "/#features" },
     { label: "Testimonials", href: "/#testimonials" },
+    { label: "Sign In", href: "/auth" },
   ];
 
   return (
@@ -56,11 +57,8 @@ const Navbar = () => {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-4">
-            <Button variant="ghost" size="default">
-              Sign In
-            </Button>
-            <Button variant="hero" size="default">
-              Get Started
+            <Button variant="hero" size="default" asChild>
+              <a href="/auth">Get Started</a>
             </Button>
           </div>
 
@@ -93,11 +91,8 @@ const Navbar = () => {
                 </a>
               ))}
               <div className="flex flex-col gap-2 pt-4 border-t border-border">
-                <Button variant="ghost" size="default" className="w-full">
-                  Sign In
-                </Button>
-                <Button variant="hero" size="default" className="w-full">
-                  Get Started
+                <Button variant="hero" size="default" className="w-full" asChild>
+                  <a href="/auth">Get Started</a>
                 </Button>
               </div>
             </div>
