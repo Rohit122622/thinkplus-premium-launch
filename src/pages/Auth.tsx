@@ -233,6 +233,17 @@ const Auth = () => {
                       <MessageCircle className="w-5 h-5 mr-2" />
                       Need Help? Chat with Support
                     </Button>
+
+                    <p className="text-center text-sm text-gray-400">
+                      Don't have an account?{" "}
+                      <button
+                        type="button"
+                        onClick={() => setIsFlipped(true)}
+                        className="text-primary hover:underline font-medium"
+                      >
+                        Sign Up
+                      </button>
+                    </p>
                   </div>
                 </form>
               </div>
@@ -348,7 +359,7 @@ const Auth = () => {
                       <button
                         type="button"
                         onClick={() => setIsFlipped(false)}
-                        className="text-primary hover:underline"
+                        className="text-primary hover:underline font-medium"
                       >
                         Sign In
                       </button>
