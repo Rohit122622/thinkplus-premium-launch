@@ -30,7 +30,7 @@ interface Course {
   students: string;
   rating: number;
   format: "Projects" | "Exam Prep" | "Interactive" | "Video";
-  price: string;
+  price: number;
 }
 
 const allCourses: Course[] = [
@@ -45,7 +45,7 @@ const allCourses: Course[] = [
     students: "12.5K",
     rating: 4.9,
     format: "Projects",
-    price: "$499",
+    price: 4999,
   },
   {
     id: 2,
@@ -58,7 +58,7 @@ const allCourses: Course[] = [
     students: "9.2K",
     rating: 4.8,
     format: "Interactive",
-    price: "$549",
+    price: 5499,
   },
   {
     id: 3,
@@ -71,7 +71,7 @@ const allCourses: Course[] = [
     students: "8.1K",
     rating: 4.7,
     format: "Video",
-    price: "$399",
+    price: 3999,
   },
   {
     id: 4,
@@ -84,7 +84,7 @@ const allCourses: Course[] = [
     students: "11.3K",
     rating: 4.9,
     format: "Projects",
-    price: "$449",
+    price: 4499,
   },
   {
     id: 5,
@@ -97,7 +97,7 @@ const allCourses: Course[] = [
     students: "7.8K",
     rating: 4.8,
     format: "Video",
-    price: "$529",
+    price: 5299,
   },
   {
     id: 6,
@@ -110,7 +110,7 @@ const allCourses: Course[] = [
     students: "15.2K",
     rating: 4.9,
     format: "Interactive",
-    price: "$399",
+    price: 3999,
   },
   {
     id: 7,
@@ -123,7 +123,7 @@ const allCourses: Course[] = [
     students: "6.5K",
     rating: 4.8,
     format: "Projects",
-    price: "$649",
+    price: 6499,
   },
   {
     id: 8,
@@ -136,7 +136,7 @@ const allCourses: Course[] = [
     students: "8.9K",
     rating: 4.7,
     format: "Interactive",
-    price: "$499",
+    price: 4999,
   },
   {
     id: 9,
@@ -149,7 +149,7 @@ const allCourses: Course[] = [
     students: "7.3K",
     rating: 4.8,
     format: "Exam Prep",
-    price: "$549",
+    price: 5499,
   },
   {
     id: 10,
@@ -162,7 +162,7 @@ const allCourses: Course[] = [
     students: "9.8K",
     rating: 4.9,
     format: "Projects",
-    price: "$499",
+    price: 4999,
   },
   {
     id: 11,
@@ -175,7 +175,7 @@ const allCourses: Course[] = [
     students: "5.4K",
     rating: 4.7,
     format: "Projects",
-    price: "$599",
+    price: 5999,
   },
   {
     id: 12,
@@ -188,7 +188,7 @@ const allCourses: Course[] = [
     students: "6.7K",
     rating: 4.8,
     format: "Video",
-    price: "$479",
+    price: 4799,
   },
 ];
 
@@ -217,6 +217,15 @@ const BrowseCourses = () => {
     setCurrentPage(1);
   };
 
+  const formatPrice = (price: number) => {
+    return new Intl.NumberFormat("en-IN", {
+      style: "currency",
+      currency: "INR",
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(price);
+  };
+
   const filteredAndSortedCourses = useMemo(() => {
     let filtered = allCourses.filter((course) => {
       const matchesSearch =
@@ -239,9 +248,9 @@ const BrowseCourses = () => {
         case "newest":
           return b.id - a.id;
         case "price-low":
-          return parseInt(a.price.replace("$", "")) - parseInt(b.price.replace("$", ""));
+          return a.price - b.price;
         case "price-high":
-          return parseInt(b.price.replace("$", "")) - parseInt(a.price.replace("$", ""));
+          return b.price - a.price;
         default:
           return 0;
       }
@@ -569,7 +578,7 @@ const BrowseCourses = () => {
                         </div>
 
                         <div className="flex items-center justify-between pt-4 border-t border-border">
-                          <span className="text-xl font-bold text-primary">{course.price}</span>
+                          <span className="text-xl font-bold text-primary">{formatPrice(course.price)}</span>
                           <div className="flex gap-2">
                             <Button variant="outline" size="sm">
                               Syllabus

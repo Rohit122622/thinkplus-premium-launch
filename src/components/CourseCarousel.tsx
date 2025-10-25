@@ -16,7 +16,7 @@ const courses = [
     rating: 4.9,
     students: "12.5K",
     duration: "12 weeks",
-    price: "$499",
+    price: 4999,
     badge: "Bestseller",
   },
   {
@@ -27,7 +27,7 @@ const courses = [
     rating: 4.8,
     students: "9.2K",
     duration: "10 weeks",
-    price: "$549",
+    price: 5499,
     badge: "Popular",
   },
   {
@@ -38,7 +38,7 @@ const courses = [
     rating: 4.7,
     students: "8.1K",
     duration: "8 weeks",
-    price: "$399",
+    price: 3999,
     badge: "New",
   },
   {
@@ -49,7 +49,7 @@ const courses = [
     rating: 4.9,
     students: "11.3K",
     duration: "9 weeks",
-    price: "$449",
+    price: 4499,
     badge: "Trending",
   },
   {
@@ -60,13 +60,22 @@ const courses = [
     rating: 4.8,
     students: "7.8K",
     duration: "11 weeks",
-    price: "$529",
+    price: 5299,
     badge: "Featured",
   },
 ];
 
 const CourseCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const formatPrice = (price: number) => {
+    return new Intl.NumberFormat("en-IN", {
+      style: "currency",
+      currency: "INR",
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(price);
+  };
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % courses.length);
@@ -168,7 +177,7 @@ const CourseCarousel = () => {
                     </div>
 
                     <div className="flex items-center justify-between pt-4 border-t border-border">
-                      <span className="text-2xl font-bold text-primary">{course.price}</span>
+                      <span className="text-2xl font-bold text-primary">{formatPrice(course.price)}</span>
                       <Button variant="default" size="default">
                         Enroll Now
                       </Button>
